@@ -8,16 +8,16 @@ html{
 }
 
 body {
-  padding-top: 54px;
-  height:100%;
+/*   padding-top: 54px;
+ */  height:100%;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
 }
-
+ */
 .wrapper{
 	min-height : 100%;
 	position : relative;

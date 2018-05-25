@@ -1,5 +1,9 @@
 package net.dev.onlineshopping.controller;
 
+import net.dev.shoppingbackend.dao.CategoryDAO;
+import net.dev.shoppingbackend.dto.Category;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,12 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PageController {
+	
+	@Autowired
+	private CategoryDAO categoryDao;
 
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("Greeting", "Welcome to spring");
 		mv.addObject("title", "home");
+		
+		mv.addObject("categories",categoryDao.list());
 		mv.addObject("userClickOnHome", true);
 		return mv;
 	}
@@ -23,6 +32,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("Greeting", "Welcome to spring");
 		mv.addObject("title", "About us");
+		mv.addObject("categories",categoryDao.list());
 		mv.addObject("userClickOnAbout", true);
 		return mv;
 	}
@@ -32,6 +42,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("Greeting", "Welcome to spring");
 		mv.addObject("title", "Contact us");
+		mv.addObject("categories",categoryDao.list());
 		mv.addObject("userClickOnContact", true);
 		return mv;
 	}
@@ -60,5 +71,34 @@ public class PageController {
 		return mv;
 
 	}*/
+	
+	@RequestMapping(value = "show/all/products")
+	public ModelAndView showAllProducts() {
+		ModelAndView mv = new ModelAndView("page");
+
+		mv.addObject("title", "showing all products");
+		
+		mv.addObject("categories",categoryDao.list());
+		mv.addObject("userClickOnAllProducts", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = "show/category/{id}/products")
+	public ModelAndView showCategoryProducts(@PathVariable("id")int id) {
+		ModelAndView mv = new ModelAndView("page");
+
+		Category category = null;
+		category = categoryDao.get(id);
+		
+		mv.addObject("title", category.getName());
+		mv.addObject("categories",categoryDao.list());
+		mv.addObject("category",category);
+		
+		mv.addObject("userClickOnCategoryProducts", true);
+		return mv;
+	}
+	
+	
+	
 
 }

@@ -38,6 +38,7 @@
 <body>
 
 	<div class="wrapper">
+	
 		<%@include file="./shared/navbar.jsp"%>
 
 		<div class="content">
@@ -53,6 +54,12 @@
 			<c:if test="${userClickOnContact == true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
+			
+			<c:if test="${userClickOnAllProducts == true or userClickOnCategoryProducts == true}">
+				<%@include file="listProducts.jsp"%>
+			</c:if>
+			
+			
 		</div>
 
 			<!-- /.container -->
