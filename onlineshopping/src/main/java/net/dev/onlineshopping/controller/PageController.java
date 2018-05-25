@@ -13,10 +13,30 @@ public class PageController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("Greeting", "Welcome to spring");
+		mv.addObject("title", "home");
+		mv.addObject("userClickOnHome", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/about")
+	public ModelAndView about() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("Greeting", "Welcome to spring");
+		mv.addObject("title", "About us");
+		mv.addObject("userClickOnAbout", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/contact")
+	public ModelAndView contact() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("Greeting", "Welcome to spring");
+		mv.addObject("title", "Contact us");
+		mv.addObject("userClickOnContact", true);
 		return mv;
 	}
 
-	@RequestMapping(value = "/test")
+	/*@RequestMapping(value = "/test")
 	public ModelAndView test(
 			@RequestParam(value = "greeting", required = false) String greeting) {
 		if (greeting == null) {
@@ -39,6 +59,6 @@ public class PageController {
 		mv.addObject("Greeting", greeting);
 		return mv;
 
-	}
+	}*/
 
 }
