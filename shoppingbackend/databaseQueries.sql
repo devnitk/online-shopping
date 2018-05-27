@@ -1,4 +1,4 @@
-CREATE TABLE categories (
+CREATE TABLE category (
 
 	id IDENTITY,
 	name VARCHAR(50),

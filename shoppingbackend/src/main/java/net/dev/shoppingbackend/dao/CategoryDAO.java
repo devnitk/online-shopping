@@ -6,7 +6,12 @@ import net.dev.shoppingbackend.dto.Category;
 
 public interface CategoryDAO {
 
-	boolean addCategory(Category category);
+	boolean add(Category category);
+	
+	boolean update(Category category);
+	
+	boolean delete(Category category);
+	
 	
 	List<Category> list();
 	
